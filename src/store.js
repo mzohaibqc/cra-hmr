@@ -5,8 +5,8 @@
 import { createStore } from 'redux';
 import rootReducer from 'reducers'; // aka this is your rootReducer
 
-const reduxDevTools =
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+// eslint-disable-next-line no-underscore-dangle
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
 
 const configureStore = () => {
   const store = createStore(rootReducer, reduxDevTools);

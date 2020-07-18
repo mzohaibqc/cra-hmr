@@ -14,11 +14,13 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "eslint src --fix --ignore-pattern src/serviceWorker.js -c .eslintrc.js"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "eslintIgnore": ["./src/serviceWorker.js"],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -34,6 +36,12 @@
   "devDependencies": {
     "@hot-loader/react-dom": "^16.13.0",
     "customize-cra": "^1.0.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react-hooks": "^4.0.8",
+    "prettier": "^2.0.5",
     "react-app-rewired": "^2.1.6",
     "react-hot-loader": "^4.12.21"
   }
