@@ -15,12 +15,11 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint:fix": "eslint src --fix --ignore-pattern src/serviceWorker.js -c .eslintrc.js"
+    "lint:fix": "eslint --fix src config-overrides.js -c .eslintrc.js --ignore-path .eslintignore"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-  "eslintIgnore": ["./src/serviceWorker.js"],
   "browserslist": {
     "production": [
       ">0.2%",
