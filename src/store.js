@@ -3,7 +3,8 @@
  */
 
 import { createStore } from 'redux';
-import rootReducer from 'reducers'; // aka this is your rootReducer
+import rootReducer from 'reducers';
+import { persistStore } from 'redux-persist';
 
 // eslint-disable-next-line no-underscore-dangle
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
@@ -18,8 +19,8 @@ const configureStore = () => {
       });
     }
   }
-
-  return store;
+  let persistor = persistStore(store);
+  return { store, persistor };
 };
 
 export default configureStore;

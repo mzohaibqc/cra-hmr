@@ -1,13 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const prettierOptions = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8'),
-);
+const prettierOptions = JSON.parse(fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8'));
 
 module.exports = {
   parser: 'babel-eslint',
-  extends: [ 'prettier', 'prettier/react',  'plugin:react/recommended'],
+  extends: ['prettier', 'prettier/react', 'plugin:react/recommended'],
   plugins: ['prettier', 'react', 'react-hooks', 'jsx-a11y'],
   env: {
     jest: true,
@@ -23,7 +21,7 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': ['error', prettierOptions],
+    'prettier/prettier': [1, prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
     'import/imports-first': 0,
@@ -60,11 +58,12 @@ module.exports = {
     'newline-per-chained-call': 0,
     'no-confusing-arrow': 0,
     'no-console': 1,
-    'no-unused-vars': 2,
+    'no-unused-vars': 1,
     'no-use-before-define': 0,
     'prefer-template': 2,
     'react/destructuring-assignment': 0,
     'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-closing-tag-location': 0,
     'react/forbid-prop-types': 0,
     'react/jsx-first-prop-new-line': [2, 'multiline'],
@@ -76,20 +75,20 @@ module.exports = {
     'react/self-closing-comp': 0,
     'react/sort-comp': 0,
     'require-yield': 0,
-    "@typescript-eslint": "off"
+    '@typescript-eslint': 'off',
   },
   settings: {
-    "import/resolver": {
-      "webpack": {
-        "config": {
-          "resolve": {
-            "modules": ["node_modules", 'src/']
-          }
-        }
-      }
+    'import/resolver': {
+      webpack: {
+        config: {
+          resolve: {
+            modules: ['node_modules', 'src/'],
+          },
+        },
+      },
     },
     react: {
-      "version": "detect"
-    }
-  }
+      version: 'detect',
+    },
+  },
 };
