@@ -1,5 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-const { override, addBabelPlugin, addWebpackAlias, useBabelRc } = require('customize-cra');
+const {
+  override,
+  addBabelPlugin,
+  addWebpackPlugin,
+  addWebpackAlias,
+  useBabelRc,
+  addLessLoader,
+  fixBabelImports,
+} = require('customize-cra');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
 // Import your eslint configuration here
 const eslintConfig = require('./.eslintrc.js');
@@ -31,6 +40,21 @@ const useEslintConfig = (configRules) => (config) => {
 
 // Support environment -specific settings
 const env = process.env.NODE_ENV;
+
+const commonOptions = [
+  useBabelRc(),
+  fixBabelImports('antd', {
+    libraryDirectory: 'es',
+    libraryName: 'antd',
+    style: true,
+  }),
+  addLessLoader({
+    lessOptions: {
+      javascriptEnabled: true,
+    },
+  }),
+  addWebpackPlugin(new AntdDayjsWebpackPlugin()),
+];
 const envs = {
   development: override(
     addBabelPlugin('react-hot-loader/babel'),
@@ -38,9 +62,9 @@ const envs = {
       'react-dom': process.env.NODE_ENV === 'production' ? 'react-dom' : '@hot-loader/react-dom',
     }),
     useEslintConfig(eslintConfig), // Use your imported .eslintrc.js file here
-    useBabelRc(),
+    ...commonOptions,
   ),
-  production: override(useBabelRc()),
+  production: override(...commonOptions),
 };
 
 module.exports = envs[env];
